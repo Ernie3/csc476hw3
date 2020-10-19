@@ -20,6 +20,7 @@ public class Slingshot : MonoBehaviour
     {
         var launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
+        launchPos = launchPoint.transform.position;
         launchPoint.SetActive(false);
     }
 

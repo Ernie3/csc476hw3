@@ -54,6 +54,7 @@ public class MissionDemolition : MonoBehaviour
 
         castle = Instantiate(castles[level]);
         castle.transform.position = castlePos;
+
         shotsTaken = 0;
 
         // Reset camera

@@ -23,8 +23,6 @@ public class ProjectileLine : MonoBehaviour
             _poi = value;
             if(_poi != null)
             {
-                line.enabled = false;
-                points = new List<Vector3>();
                 AddPoint();
             }
         }

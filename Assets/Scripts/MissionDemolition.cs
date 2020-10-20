@@ -18,6 +18,7 @@ public class MissionDemolition : MonoBehaviour
     public Text uitLevel;
     public Text uitShots;
     public Text uitButton;
+    public Text uitBestScore;
     public Vector3 castlePos;
     public GameObject[] castles;
 
@@ -36,6 +37,25 @@ public class MissionDemolition : MonoBehaviour
 
         level = 0;
         levelMax = castles.Length;
+
+        if (!PlayerPrefs.HasKey("BestScore0"))
+        {
+            PlayerPrefs.SetInt("BestScore0", 5);
+        }
+        if (!PlayerPrefs.HasKey("BestScore1"))
+        {
+            PlayerPrefs.SetInt("BestScore1", 5);
+        }
+        if (!PlayerPrefs.HasKey("BestScore2"))
+        {
+            PlayerPrefs.SetInt("BestScore2", 5);
+        }
+        if (!PlayerPrefs.HasKey("BestScore3"))
+        {
+            PlayerPrefs.SetInt("BestScore3", 5);
+        }
+        PlayerPrefs.Save();
+
         StartLevel();
     }
 
@@ -45,6 +65,8 @@ public class MissionDemolition : MonoBehaviour
         {
             Destroy(castle);
         }
+
+        uitBestScore.text = "Best Score: " + PlayerPrefs.GetInt("BestScore" + level);
 
         var gos = GameObject.FindGameObjectsWithTag("Projectile");
         foreach (var pTemp in gos)
@@ -91,6 +113,12 @@ public class MissionDemolition : MonoBehaviour
 
     void NextLevel()
     {
+        if(shotsTaken < PlayerPrefs.GetInt("BestScore" + level))
+        {
+            PlayerPrefs.SetInt("BestScore" + level, shotsTaken);
+            PlayerPrefs.Save();
+        }
+
         level++;
         if(level == levelMax)
         {

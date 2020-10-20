@@ -35,7 +35,7 @@ public class FollowCam : MonoBehaviour
             {
                 if(POI.GetComponent<Rigidbody>().IsSleeping())
                 {
-                    POI = null;
+                    POI = GameObject.Find("ViewBoth");
                     return;
                 }
             }

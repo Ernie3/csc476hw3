@@ -19,10 +19,29 @@ public class FollowCam : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(POI == null)
+        /*if(POI == null)
             return;
 
-        var destination = POI.transform.position;
+        var destination = POI.transform.position;*/
+        Vector3 destination;
+        if (POI == null)
+        {
+            destination = Vector3.zero;
+        }
+        else
+        {
+            destination = POI.transform.position;
+            if(POI.CompareTag("Projectile"))
+            {
+                if(POI.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    POI = null;
+                    return;
+                }
+            }
+            
+        }
+
         destination.x = Mathf.Max(minXY.x, destination.x);
         destination.y = Mathf.Max(minXY.y, destination.y);
         // interpolate from the current camera position toward destination

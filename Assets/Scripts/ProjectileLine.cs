@@ -86,7 +86,7 @@ public class ProjectileLine : MonoBehaviour
         }
     }
 
-    private void Clear()
+    public void Clear()
     {
         _poi = null;
         line.enabled = false;
